@@ -10,5 +10,5 @@ class Page:
         driver.get(self.url)
 
 
-important_information = Page('https://devby.io/news/it-memy')
+important_information = Page("https://devby.io/news/it-memy")
 important_information.get()

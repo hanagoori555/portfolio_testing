@@ -7,5 +7,5 @@ class Input(Check):
         super(Input, self).__init__(self.locator)
 
 
-search = Input('input#search')
+search = Input("input#search")
 print(search.check_text())
