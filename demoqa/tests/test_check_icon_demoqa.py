@@ -1,3 +1,4 @@
+from demoqa.pages.classDemoqa import Demoqa
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -28,3 +29,20 @@ def test_icon_exist_yandex():
         print("Element not found")
     else:
         print("Element found")
+
+
+def test_icon_exist_chrome(browser):
+    browser.get("https://demoqa.com")
+    icon = browser.find_element(By.CSS_SELECTOR, "#app > header > a")
+
+    if icon is None:
+        print("Element not found")
+    else:
+        print("Element found")
+
+
+def test_icon_exist_chrome_2(browser):
+    demoqa_page = Demoqa(browser)
+    demoqa_page.visit()
+    demoqa_page.click_on_the_icon()
+    assert demoqa_page.exist_icon()
