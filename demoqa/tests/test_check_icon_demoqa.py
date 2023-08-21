@@ -41,8 +41,9 @@ def test_icon_exist_chrome(browser):
         print("Element found")
 
 
-def test_icon_exist_chrome_2(browser):
+def test_icon_exist(browser):
     demoqa_page = Demoqa(browser)
     demoqa_page.visit()
-    demoqa_page.click_on_the_icon()
-    assert demoqa_page.exist_icon()
+    demoqa_page.icon.click()
+    assert demoqa_page.equal_url()
+    assert demoqa_page.icon.exist()
