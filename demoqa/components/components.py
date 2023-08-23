@@ -1,7 +1,9 @@
 import time
 
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class WebElement:
@@ -25,3 +27,14 @@ class WebElement:
         except NoSuchElementException:
             return False
         return True
+
+    def visible(self):
+        return self.find_element().is_displayed()
+
+    def not_visible(self, time_wait=2):
+        try:
+            WebDriverWait(self.driver, time_wait).until_not(
+                EC.invisibility_of_element((By.CSS_SELECTOR, self.locator)))
+            return False
+        except TimeoutException:
+            return True
