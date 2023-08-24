@@ -27,3 +27,16 @@ def test_visible_accordian(browser):
     accordian_page.one_section_button.click()
     time.sleep(3)
     assert accordian_page.one_paragraph.not_visible()
+
+
+def test_visible_default_accordian(browser):
+    accordian_page = Accordian(browser)
+    accordian_page.visit()
+    assert accordian_page.one_paragraph.visible()
+    accordian_page.one_section_button.click()
+    browser.set_window_size(width=1000, height=300)
+    time.sleep(2)
+    assert accordian_page.one_paragraph.not_visible()
+    browser.refresh()
+    browser.set_window_size(width=1000, height=1000)
+    assert accordian_page.one_paragraph.visible()

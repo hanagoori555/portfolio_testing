@@ -1,4 +1,4 @@
-from demoqa.pages.classBagePage import BasePage
+from demoqa.pages.classBasePage import BasePage
 from demoqa.components.components import WebElement
 
 
