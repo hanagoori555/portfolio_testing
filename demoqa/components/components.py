@@ -7,16 +7,17 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class WebElement:
-    def __init__(self, driver, locator=''):
+    def __init__(self, driver, locator="", locator_type="css"):
         self.driver = driver
         self.locator = locator
+        self.locator_type = locator_type
 
     def find_element(self):
         time.sleep(3)
-        return self.driver.find_element(By.CSS_SELECTOR, self.locator)
+        return self.driver.find_element(self.get_by_type(), self.locator)
 
     def find_elements(self):
-        return self.driver.find_elements(By.CSS_SELECTOR, self.locator)
+        return self.driver.find_elements(self.get_by_type(), self.locator)
 
     def click(self):
         self.find_element().click()
@@ -37,7 +38,7 @@ class WebElement:
     def not_visible(self, time_wait=2):
         try:
             WebDriverWait(self.driver, time_wait).until_not(
-                EC.invisibility_of_element((By.CSS_SELECTOR, self.locator)))
+                EC.invisibility_of_element((self.get_by_type(), self.locator)))
             return False
         except TimeoutException:
             return True
@@ -45,4 +46,24 @@ class WebElement:
     def check_count_elements(self, count: int) -> bool:
         if len(self.find_elements()) == count:
             return True
+        return False
+
+    def get_xpath_text(self, property_path: str):
+        return self.driver.execute_script("return arguments[0]." + property_path + ";", self.find_element())
+
+    def get_by_type(self):
+        if self.locator_type == "id":
+            return By.ID
+        elif self.locator_type == "name":
+            return By.NAME
+        elif self.locator_type == "xpath":
+            return By.XPATH
+        elif self.locator_type == "css":
+            return By.CSS_SELECTOR
+        elif self.locator_type == "class":
+            return By.CLASS_NAME
+        elif self.locator_type == "link":
+            return By.LINK_TEXT
+        else:
+            print("Locator type " + self.locator_type + " not correct")
         return False
