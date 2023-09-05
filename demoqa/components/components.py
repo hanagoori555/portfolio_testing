@@ -49,7 +49,8 @@ class WebElement:
         return False
 
     def get_xpath_text(self, property_path: str):
-        return self.driver.execute_script("return arguments[0]." + property_path + ";", self.find_element())
+        return self.driver.execute_script(
+            "return arguments[0]." + property_path + ";", self.find_element())
 
     def get_by_type(self):
         if self.locator_type == "id":

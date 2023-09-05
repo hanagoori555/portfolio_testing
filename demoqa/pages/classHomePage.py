@@ -7,5 +7,7 @@ class HomePage(BasePage):
         self.base_url = "https://www.saucedemo.com"
         super().__init__(driver, self.base_url)
 
-        self.text_login = WebElement(driver=driver, locator="#login_credentials")
-        self.text_password = WebElement(driver=driver, locator="div.login_password")
+        self.text_login = WebElement(driver=driver,
+                                     locator="#login_credentials")
+        self.text_password = WebElement(driver=driver,
+                                        locator="div.login_password")
