@@ -7,7 +7,8 @@ def test_skip():
     assert True
 
 
-@pytest.mark.xfail(condition=True, reason="The reason why a test function is marked as xfail")
+@pytest.mark.xfail(condition=True,
+                   reason="The reason why a test function is marked as xfail")
 def test_xfail_1():
     """
     test fails - skipped
@@ -17,7 +18,8 @@ def test_xfail_1():
     assert False
 
 
-@pytest.mark.xfail(condition=True, reason="The reason why a test function is marked as xfail")
+@pytest.mark.xfail(condition=True, reason="The reason why a test function is "
+                                          "marked as xfail")
 def test_xfail_2():
     assert True
 
@@ -36,5 +38,3 @@ def test_parametrize(param):
 @pytest.mark.skip(reason="Reason why skip")
 def test_skip():
     assert True
-
-

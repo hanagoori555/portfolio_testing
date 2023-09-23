@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+# all for work with elements
 class WebElement:
     def __init__(self, driver, locator="", locator_type="css"):
         self.driver = driver
@@ -37,10 +38,13 @@ class WebElement:
 
     def not_visible(self, time_wait=2):
         try:
+            # browser is waiting until element appears (2 sec.)
             WebDriverWait(self.driver, time_wait).until_not(
                 EC.invisibility_of_element((self.get_by_type(), self.locator)))
+            # then appears
             return False
         except TimeoutException:
+            # then not appears (2 sec. have passed)
             return True
 
     def check_count_elements(self, count: int) -> bool:
@@ -49,6 +53,7 @@ class WebElement:
         return False
 
     def get_xpath_text(self, property_path: str):
+        # return element.property_path;
         return self.driver.execute_script(
             "return arguments[0]." + property_path + ";", self.find_element())
 

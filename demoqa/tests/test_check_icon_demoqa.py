@@ -15,6 +15,7 @@ def test_icon_exist_edge():
 
 
 def test_icon_exist_yandex():
+    # this is how to execute test on Yandex Browser
     chrome_options = webdriver.ChromeOptions()
     # link for YandexBrowser
     chrome_options.binary_location = r"C:\Users\Toha\AppData\Local\Yandex\YandexBrowser\Application\browser.exe"

@@ -1,3 +1,4 @@
+# page methods for every page
 class BasePage:
     def __init__(self, driver, base_url):
         self.driver = driver

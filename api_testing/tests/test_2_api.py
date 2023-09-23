@@ -27,6 +27,7 @@ def test_single_user():
     Assert.validate_schema(res_body)
 
     assert res_body["data"]["first_name"] == "Janet"
+    # checking that last name consist of 6 letters
     assert re.fullmatch(r"\w{6}", res_body["data"]["last_name"])
     example = {
         "data": {
@@ -53,6 +54,7 @@ def test_create():
     assert res.status_code == HTTPStatus.CREATED
     assert res.json()["name"] == name
     assert res.json()["job"] == job
+    # checking that id consist of 1-4 numbers
     assert re.fullmatch(r"\d{1, 4}", res.json()["id"])
 
     assert api.delete_user(
